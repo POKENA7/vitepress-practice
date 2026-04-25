@@ -1,8 +1,13 @@
 import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
+// GitHub Actions では GITHUB_ACTIONS=true が自動でセットされるため、
+// CI 上のビルドは GitHub Pages 用の絶対パスを使用し、
+// ローカルで file:// 直接開く場合は相対パス "./" を使用する。
+const base = process.env.GITHUB_ACTIONS ? "/vitepress-practice/" : "./";
+
 export default defineConfig({
-  base: "/vitepress-practice/",
+  base,
   title: "My Awesome Project",
   description: "A VitePress Site",
   themeConfig: {
